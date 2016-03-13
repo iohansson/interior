@@ -5,7 +5,8 @@ const path = require('path'),
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
+  normalize: path.join(__dirname, 'node_modules', 'normalize.css')
 },
   TARGET = process.env.npm_lifecycle_event;
 
@@ -24,6 +25,11 @@ const common = {
   },
   module: {
     loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: PATHS.normalize
+      },
       {
         test: /\.css$/,
         loaders: ['style', 'css'],

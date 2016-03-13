@@ -1,0 +1,12 @@
+html, body {
+  height: 100%;
+}
+
+.hero {
+  width: 80%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  font-size: 10em; 
+}

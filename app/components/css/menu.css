@@ -1,0 +1,37 @@
+.menu {
+  width: 100vh;
+  height: 45px;
+  position: fixed;
+  background: transparent;
+  transform-origin: left top;
+  transform: rotate(-90deg) translateX(-100%);
+}
+  .menu-list {
+    padding: 0;
+    margin: 0;
+  }
+  .menu-list-item {
+    list-style-type: none;
+    display: inline-block;
+    height: 100%;
+    line-height: 45px;
+    width: 33vh;
+    text-align: center;
+  }
+    .menu-group {
+      width: 33vh;
+    }
+      .menu-group-header-container {
+        display: inline-block;
+        width: 33vh;
+      }
+      .menu-group-list {
+        display: inline-block;
+        width: 66vh;
+      }
+    .menu-group-active {
+      width: 100vh;
+    }
+    .menu-link {
+      text-decoration: none;
+    }
