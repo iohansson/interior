@@ -36,7 +36,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="container">
         <Menu groups={this.groups} />
         {this.props.children}
       </div>

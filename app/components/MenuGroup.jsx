@@ -21,7 +21,14 @@ export default class MenuGroup extends React.Component {
         <button className="menu-group-close" onClick={onClose}>x</button>
         <span className="menu-group-header">{name}</span>
       </div> :
-      <Link className="menu-link menu-group-link" onClick={onClick.bind(null, id)} to={name}>{name}</Link>;
+      <Link
+        className="menu-link menu-group-link"
+        onClick={onClick.bind(null, id)}
+        to={name}
+        activeClassName="menu-link-active"
+      >
+        {name}
+      </Link>;
     const body = active ?
       <ul className="menu-list menu-group-list">
         {renderedItems}

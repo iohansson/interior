@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default class Design extends React.Component {
+export default class Projects extends React.Component {
   render() {
     return (
-      <div className="container design">
+      <div className="container projects-list">
         {this.props.children}
       </div>
     );

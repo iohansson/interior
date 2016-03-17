@@ -44,6 +44,11 @@ const common = {
         test: /\.js$/,
         loaders: ['babel?cacheDirectory'],
         include: PATHS.app
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader?name=images/[name].[ext]',
+        include: PATHS.app
       }
     ]
   }

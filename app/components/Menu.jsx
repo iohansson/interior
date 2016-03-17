@@ -1,5 +1,6 @@
 import React from 'react';
 import MenuGroup from './MenuGroup.jsx';
+import { hashHistory } from 'react-router';
 import './css/menu.css';
 
 export default class Menu extends React.Component {
@@ -39,6 +40,7 @@ export default class Menu extends React.Component {
     });
   }
   closeGroup() {
+    hashHistory.push('/');
     this.setState({
       activeGroupId: null
     });

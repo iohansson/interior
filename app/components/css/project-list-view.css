@@ -1,0 +1,33 @@
+.project-list-description-panel {
+  width: 46.67%;
+  position: relative;
+  height: 100%;
+  display: inline-block;
+}
+  .project-list-description {
+    width: 54%;
+    margin-left: 25.6%;
+    line-height: 2em;
+
+    /* center vertically */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .project-list-title {
+    font-size: 6.375em;
+    line-height: 0.7353em;
+    color: #cecece;
+
+    width: 40%;
+    margin: 0 0 0 38%;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .project-list-image {
+    width: 53.33%;
+  }
