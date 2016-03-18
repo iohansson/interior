@@ -27,7 +27,9 @@
     top: 50%;
     transform: translateY(-50%);
   }
-
-  .project-list-image {
+  .project-list-image-container {
     width: 53.33%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
   }
