@@ -29,6 +29,7 @@ export default class Menu extends React.Component {
         <ul className="menu-list">
           {renderedGroups}
         </ul>
+        <img src={require('../images/logo.svg')} />
       </nav>
     );
   }

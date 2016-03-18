@@ -49,6 +49,11 @@ const common = {
         test: /\.(png|jpg)$/,
         loader: 'file-loader?name=images/[name].[ext]',
         include: PATHS.app
+      },
+      {
+        test: /\.(svg)$/,
+        loader: 'file-loader?name=images/[name].[ext]',
+        include: PATHS.app
       }
     ]
   }

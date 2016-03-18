@@ -39,3 +39,15 @@
 
     transform: translate3d(0, 0, 0);
   }
+
+  .control-container {
+    position: absolute;
+    right: 24.167%;
+    width: 1.875em;
+  }
+    .control-container-next {
+      bottom: 11.688%;
+    }
+    .svg-arrow {
+      fill: #cecece;
+    }

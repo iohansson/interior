@@ -49,7 +49,6 @@ export default class ProjectListView extends React.Component {
         </Motion>
         <Motion style={style['image']} key={'image'}>
           {({width}) => {
-            console.log(spring(53.33));
             return(
               <Image
                 ref="image"
@@ -62,6 +61,9 @@ export default class ProjectListView extends React.Component {
             );}
           }
         </Motion>
+        <div className="control-container control-container-next">
+          <img className="control-image control-image-next" src={require('../images/arrow-next-01.svg')} />
+        </div>
       </div>
     );
   }

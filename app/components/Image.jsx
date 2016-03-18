@@ -8,7 +8,8 @@ export default class Image extends React.Component {
         width: 0,
         height: 0,
         top: 0,
-        left: 0
+        left: 0,
+        animating: false
       }
     };
   }
@@ -16,10 +17,6 @@ export default class Image extends React.Component {
     window.addEventListener('resize', this.handleResize.bind(this));
   }
   render() {
-    console.log(this.props.style.width, this.props.styleToMatch);
-    if (this.props.style.width === this.props.styleToMatch) {
-      this.cover();
-    }
     return (
       <div
         ref="container"
