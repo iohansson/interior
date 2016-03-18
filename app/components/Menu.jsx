@@ -13,9 +13,7 @@ export default class Menu extends React.Component {
   }
   render() {
     const { activeGroupId } = this.state;
-    console.log(activeGroupId);
     const renderedGroups = this.props.groups.filter((group) => {
-      console.log(group.id);
       return activeGroupId === null || (group.id === activeGroupId);
     }).map((group, i) => {
       return <MenuGroup

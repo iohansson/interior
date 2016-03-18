@@ -12,10 +12,26 @@ export default class Image extends React.Component {
       }
     };
   }
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
   render() {
+    console.log(this.props.style.width, this.props.styleToMatch);
+    if (this.props.style.width === this.props.styleToMatch) {
+      this.cover();
+    }
     return (
-      <div className={this.props.className + '-container'}>
-        <img {...this.props}
+      <div
+        ref="container"
+        className={this.props.className + '-container'}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        style={this.props.style}
+      >
+        <img
+          ref="image"
+          src={this.props.src}
+          className={this.props.className}
           onLoad={this.afterLoad.bind(this)}
           style={this.state.style} />
       </div>
@@ -36,10 +52,11 @@ export default class Image extends React.Component {
       pratio: parent.clientWidth / parent.clientHeight
     });
   }
-  cover(el) {
+  cover() {
+    const el = this.refs.image;
     const { ow, oh, ratio } = this.getNaturalDimensions(el);
     const { pw, ph, pratio} = this.getParentDimensions(el);
-    var width, height, top = 0, left = 0;
+    let width, height, top = 0, left = 0;
     if (ratio > pratio) {
       height = ph;
       width = height * ratio;
@@ -59,6 +76,9 @@ export default class Image extends React.Component {
     });
   }
   afterLoad(e) {
-    this.cover(e.target);
+    this.cover();
+  }
+  handleResize(e) {
+    this.cover();
   }
 }

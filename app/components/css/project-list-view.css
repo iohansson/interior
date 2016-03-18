@@ -1,8 +1,9 @@
 .project-list-description-panel {
   width: 46.67%;
-  position: relative;
+  position: absolute;
   height: 100%;
-  display: inline-block;
+  top: 0;
+  left: 0;
 }
   .project-list-description {
     width: 54%;
@@ -26,10 +27,15 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 99;
   }
   .project-list-image-container {
     width: 53.33%;
     height: 100%;
-    display: inline-block;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    transform: translate3d(0, 0, 0);
   }

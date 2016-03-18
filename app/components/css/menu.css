@@ -7,6 +7,8 @@
   transform: rotate(-90deg) translateX(-100%);
 
   font-size: 0.856875em;
+
+  z-index: 999;
 }
   .menu-list {
     padding: 0;
