@@ -8,8 +8,7 @@ export default class Image extends React.Component {
         width: 0,
         height: 0,
         top: 0,
-        left: 0,
-        animating: false
+        left: 0
       }
     };
   }
@@ -19,16 +18,12 @@ export default class Image extends React.Component {
   render() {
     return (
       <div
-        ref="container"
-        className={this.props.className + '-container'}
-        onMouseEnter={this.props.onMouseEnter}
-        onMouseLeave={this.props.onMouseLeave}
-        style={this.props.style}
+        className={this.props.className + '-image-container'}
       >
         <img
           ref="image"
-          src={this.props.src}
-          className={this.props.className}
+          src={this.props.imageUrl}
+          className={this.props.className + '-image'}
           onLoad={this.afterLoad.bind(this)}
           style={this.state.style} />
       </div>
