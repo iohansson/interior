@@ -5,12 +5,14 @@ export default class Panel extends React.Component {
     super(props);
   }
   render() {
+    const { className, style, children } = this.props;
     return (
       <div
-        className={this.props.className}
-        style={this.props.style}
+        className={className}
+        style={style}
+        data-f1={this.props['data-f1']}
       >
-        {this.props.children}
+        {children}
       </div>
     );
   }

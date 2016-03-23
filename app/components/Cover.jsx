@@ -9,6 +9,7 @@ export default class Cover extends React.Component {
   }
   render() {
     const controls = this.props.showControls ? <ListControls /> : '';
+    const { f1 } = this.props;
     return (
       <div
         ref="container"
@@ -16,6 +17,7 @@ export default class Cover extends React.Component {
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         style={this.props.style}
+        data-f1={f1 !== undefined ? f1.cover : ''}
       >
         <Title
           ref="title"
@@ -26,6 +28,7 @@ export default class Cover extends React.Component {
           ref="image"
           imageUrl={this.props.imageUrl}
           className={this.props.className}
+          data-f1={f1 !== undefined ? f1.image : ''}
         />
         {controls}
       </div>

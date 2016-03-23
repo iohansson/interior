@@ -15,3 +15,26 @@
     top: 50%;
     transform: translateY(-50%);
   }
+
+/* animation */
+.paragraph-enter {
+  opacity: 0;
+  transform: translateY(0);
+}
+
+.paragraph-enter.paragraph-enter-active {
+  opacity: 1;
+  transform: translateY(-50%);
+  transition: transform 1000ms ease-in, opacity 1000ms ease-in;
+}
+
+.paragraph-leave {
+  transform: translateY(-50%);
+  opacity: 1;
+}
+
+.paragraph-leave.paragraph-leave-active {
+  opacity: 0;
+  transform: translateY(0);
+  transition: transform 600ms ease-out, opacity 600ms ease-out;
+}

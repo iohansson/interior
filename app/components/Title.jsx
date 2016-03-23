@@ -1,25 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import raf from 'raf';
 
 export default class Title extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      blocks: [
-        props.title
-      ]
+      blocks: null
     };
   }
-  componentDidMount() {
-    const style = window.getComputedStyle(ReactDOM.findDOMNode(this));
+  initBlocks() {
+    const dom = this.refs.title;
+    const style = window.getComputedStyle(dom);
     const family = style.getPropertyValue('font-family');
     const size = style.getPropertyValue('font-size');
-    const width = parseInt(style.getPropertyValue('width'), 10);
+    const width = dom.clientWidth;
     const textWidth = parseInt(this.getWidthOfText(this.props.title, family, size), 10);
     const nblocks = Math.ceil(textWidth / width) + 1;
-
     const words = this.props.title.split(' ');
     const len = this.props.title.length;
     const symsInBlock = Math.floor(len / nblocks);
@@ -39,6 +38,9 @@ export default class Title extends React.Component {
       blocks
     });
   }
+  componentDidMount() {
+    raf(this.initBlocks.bind(this));
+  }
   getWidthOfText(txt, fontname, fontsize) {
     let c = document.createElement('canvas');
     let ctx = c.getContext('2d');
@@ -49,19 +51,19 @@ export default class Title extends React.Component {
     return length;
   }
   render() {
-    const blocks = this.state.blocks.map((block, i) =>
+    const blocks = this.state.blocks ? this.state.blocks.map((block, i) =>
       <span className="title-block-container" key={i}>
         <span className="title-block">
           {block}
         </span>
       </span>
-    );
+    ) : '';
     return (
       <h1
         ref="title"
         className={this.props.className + '-title'}
       >
-        <ReactCSSTransitionGroup transitionName="title-blocks" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+        <ReactCSSTransitionGroup transitionName="title-blocks" transitionEnterTimeout={1000} transitionLeaveTimeout={600}>
           {blocks}
         </ReactCSSTransitionGroup>
       </h1>

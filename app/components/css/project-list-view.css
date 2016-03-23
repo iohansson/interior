@@ -10,7 +10,6 @@
   .project-list-cover-title {
     font-size: 6.375em;
     line-height: 0.7353em;
-    color: #cecece;
 
     width: 100%;
     margin: 0 0 0 -15%;
@@ -28,7 +27,12 @@
   .title-block-container {
     display: block;
     overflow: hidden;
+    line-height: 1.1;
+    margin-top: -0.37em;
   }
+    .title-block-container:first-child {
+      margin-top: 0;
+    }
   .title-block {
     display: block;
   }
@@ -38,7 +42,7 @@
 
   .title-blocks-enter.title-blocks-enter-active .title-block {
     transform: translateY(0);
-    transition: transform 500ms ease-out;
+    transition: transform 1000ms ease-in;
   }
 
   .title-blocks-leave .title-block {
@@ -47,5 +51,5 @@
 
   .title-blocks-leave.title-blocks-leave-active .title-block {
     transform: translateY(150%);
-    transition: transform 300ms ease-out;
+    transition: transform 600ms ease-out;
   }

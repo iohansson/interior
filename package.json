@@ -27,12 +27,14 @@
     "webpack-merge": "^0.8.3"
   },
   "dependencies": {
+    "eases": "^1.0.8",
     "node-uuid": "^1.4.7",
     "normalize.css": "^3.0.3",
     "raf": "^3.2.0",
     "react": "^0.14.7",
     "react-addons-css-transition-group": "^0.14.7",
     "react-dom": "^0.14.7",
+    "react-f1": "^6.0.11",
     "react-motion": "^0.4.2",
     "react-router": "^2.0.1",
     "tween.js": "^16.3.4"

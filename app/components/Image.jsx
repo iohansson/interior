@@ -16,6 +16,7 @@ export default class Image extends React.Component {
     window.addEventListener('resize', this.handleResize.bind(this));
   }
   render() {
+    const f1 = this.props['data-f1'];
     return (
       <div
         className={this.props.className + '-image-container'}
@@ -25,7 +26,9 @@ export default class Image extends React.Component {
           src={this.props.imageUrl}
           className={this.props.className + '-image'}
           onLoad={this.afterLoad.bind(this)}
-          style={this.state.style} />
+          style={this.state.style}
+          data-f1={f1 !== undefined ? f1 : ''}
+        />
       </div>
     );
   }

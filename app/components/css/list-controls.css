@@ -9,6 +9,7 @@
   position: absolute;
   width: 1.875em;
   right: 47.5%;
+  cursor: pointer;
 }
 .control-arrow-next {
   bottom: 5.625em;
