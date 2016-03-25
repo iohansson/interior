@@ -1,14 +1,13 @@
 .list-controls-container {
   position: absolute;
-  width: 100%;
+  width: 1.875em;
   height: 100%;
   top: 0;
-  left: 0;
+  right: 23.75%;
 }
 .control-arrow {
   position: absolute;
   width: 1.875em;
-  right: 47.5%;
   cursor: pointer;
 }
 .control-arrow-next {

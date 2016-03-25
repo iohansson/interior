@@ -62,7 +62,8 @@ export default class Title extends React.Component {
     return (
       <h1
         ref="title"
-        className={this.props.className + '-title'}
+        className={this.props.className}
+        id={this.props.id}
       >
         {blocks}
       </h1>

@@ -26,6 +26,8 @@
   left: 0;
   right: auto;
 }
-.project-list-container-even .project-list-cover-title {
-  margin: 0 0 0 30%;
+.project-list-container-even .project-list-title {
+  left: 14.083%;
+  right: auto;
+  text-align: right;
 }

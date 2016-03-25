@@ -1,5 +1,4 @@
 import React from 'react';
-import Title from './Title.jsx';
 import Image from './Image.jsx';
 import ListControls from './ListControls.jsx';
 
@@ -18,15 +17,11 @@ export default class Cover extends React.Component {
         style={this.props.style}
         id="cover"
       >
-        <Title
-          ref="title"
-          className={this.props.className}
-          title={this.props.title}
-        />
         <Image
-          ref="image"
+          ref="imageContainer"
           imageUrl={this.props.imageUrl}
           className={this.props.className}
+          id="projectCoverImage"
         />
         {controls}
       </div>

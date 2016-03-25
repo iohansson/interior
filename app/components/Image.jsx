@@ -25,7 +25,9 @@ export default class Image extends React.Component {
           src={this.props.imageUrl}
           className={this.props.className + '-image'}
           onLoad={this.afterLoad.bind(this)}
-          style={this.state.style} />
+          style={this.state.style}
+          id={this.props.id}
+          />
       </div>
     );
   }

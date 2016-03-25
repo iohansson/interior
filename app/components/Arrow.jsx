@@ -8,17 +8,110 @@ export default class Arrow extends React.Component {
   navigate() {
     hashHistory.push(this.props.link);
   }
+  handleHover(hover) {
+    const {type} = this.props;
+    const down = type === 'down';
+    const movepx = down ? 16 : -16;
+    const h = 70,
+      largeh = h + Math.abs(movepx);
+    const yi = down ? 0 : 20.7;
+    const tl = new TimelineMax();
+    const stages = {
+      hover: [
+        {
+          id: '#polygon'+type,
+          duration: 0.5,
+          to: {
+            y: movepx
+          },
+          start: 0
+        },
+        {
+          id: '#rect'+type,
+          duration: 0.5,
+          to: {
+            attr: {
+              height: largeh,
+              y: down ? yi : yi + movepx
+            }
+          },
+          start: 0
+        },
+        {
+          id: '#rect'+type,
+          duration: 0.5,
+          to: {
+            attr: {
+              height: h,
+              y: yi + movepx
+            }
+          }
+        }
+      ],
+      idle: [
+        {
+          id: '#rect'+type,
+          duration: 0.5,
+          to: {
+            attr: {
+              height: largeh,
+              y: yi + movepx
+            }
+          }
+        },
+        {
+          id: '#polygon'+type,
+          duration: 0.5,
+          to: {
+            y: movepx
+          },
+          start: 'second'
+        },
+        {
+          id: '#rect'+type,
+          duration: 0.5,
+          to: {
+            attr: {
+              height: largeh,
+              y: down ? yi : yi + movepx
+            }
+          },
+          start: 'second'
+        }
+      ]
+    };
+    // if (hover) {
+    //   tl.to('#polygon'+type, 0.5, { y: styles.polygon.y });
+    //   tl.fromTo('#rect'+type, 0.5, { y: styles.rect.from.y, height: styles.rect.from.height }, { y: styles.rect.to.y, height: styles.rect.to.height }, 0);
+    //   tl.to('#rect'+type, 0.5, { height: styles.rect.from.height });
+    // } else {
+    //   tl.fromTo('#rect'+type, 0.5, { height: styles.rect.to.height }, { height: styles.rect.from.height });
+    //   tl.to('#polygon'+type, 0.5, { y: styles.polygon.y }, 'secondStage');
+    //   tl.fromTo('#rect'+type, 0.5, { y: styles.rect.from.y, height: styles.rect.from.height }, { y: styles.rect.to.y, height: styles.rect.to.height }, 'secondStage');
+    // }
+    const animation = hover ? 'hover' : 'idle';
+    for (const stage in stages[animation]) {
+      if (stage.start) {
+        tl.to(stage.id, stage.duration, stage.to, stage.start);
+      } else {
+        tl.to(stage.id, stage.duration, stage.to);
+      }
+    }
+    tl.play();
+  }
   render() {
     const points = this.props.type === 'down' ? '1,62.7 15,76.7 29,62.7 25.2,58.9 15,69.1 4.8,58.9' : '29,29 15,15 1,29 4.8,32.8 15,22.6 25.2,32.8';
-    const y = this.props.type === 'down' ? 1 : -20.7;
+    const y = this.props.type === 'down' ? 0 : 20.7;
     return (
       <div
         {...this.props}
         onClick={this.navigate.bind(this)}
+        onMouseEnter={this.handleHover.bind(this, true)}
+        onMouseLeave={this.handleHover.bind(this, false)}
       >
-        <svg width="30px" height="92px" viewBox="0 0 30 92">
-          <polygon className="svg-arrow" points={points} />
-          <rect x="12" y={y} transform="matrix(-1 2.693618e-010 -2.693618e-010 -1 30 72)" className="svg-arrow" width="6" height="70" />
+        <svg width="30px" height="92px" viewBox="0 0 30 92" id={'arrow'+this.props.type}>
+          <polygon className="svg-arrow" points={points} id={'polygon'+this.props.type} />
+          <rect x="12" y={y} className="svg-arrow" width="6" height="70" id={'rect'+this.props.type} />
         </svg>
       </div>
     );
