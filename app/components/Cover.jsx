@@ -8,7 +8,7 @@ export default class Cover extends React.Component {
     super(props);
   }
   render() {
-    const controls = this.props.showControls ? <ListControls /> : '';
+    const controls = this.props.showControls ? this.props.controls : '';
     return (
       <div
         ref="container"
@@ -16,6 +16,7 @@ export default class Cover extends React.Component {
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         style={this.props.style}
+        id="cover"
       >
         <Title
           ref="title"

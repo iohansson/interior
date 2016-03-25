@@ -9,8 +9,7 @@ export default class TextPanel extends React.Component {
   render() {
     return (
       <Panel
-        style={this.props.style}
-        className={this.props.className}
+        {...this.props}
       >
         <Paragraph
           ref="paragraph"

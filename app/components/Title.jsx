@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import TweenMax from 'gsap/src/minified/TweenMax.min';
 
 export default class Title extends React.Component {
   constructor(props) {
@@ -39,6 +39,9 @@ export default class Title extends React.Component {
       blocks
     });
   }
+  componentDidUpdate() {
+    TweenMax.to('.title-block', 0.7, { y: '0%', delay: 0.5 });
+  }
   getWidthOfText(txt, fontname, fontsize) {
     let c = document.createElement('canvas');
     let ctx = c.getContext('2d');
@@ -61,9 +64,7 @@ export default class Title extends React.Component {
         ref="title"
         className={this.props.className + '-title'}
       >
-        <ReactCSSTransitionGroup transitionName="title-blocks" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-          {blocks}
-        </ReactCSSTransitionGroup>
+        {blocks}
       </h1>
     );
   }

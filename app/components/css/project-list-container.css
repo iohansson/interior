@@ -1,3 +1,6 @@
+.project-list-container {
+  overflow: hidden;
+}
 .project-list-description-panel {
   width: 46.67%;
   position: absolute;
@@ -15,3 +18,14 @@
     top: 50%;
     transform: translateY(-50%);
   }
+.project-list-container-even .project-list-description-panel {
+  right: 0;
+  left: auto;
+}
+.project-list-container-even .project-list-cover-container {
+  left: 0;
+  right: auto;
+}
+.project-list-container-even .project-list-cover-title {
+  margin: 0 0 0 30%;
+}

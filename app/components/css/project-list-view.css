@@ -28,24 +28,13 @@
   .title-block-container {
     display: block;
     overflow: hidden;
+    line-height: 1.1;
+    margin-top: -0.35em;
+  }
+  .title-block-container:first-child {
+    margin-top: 0;
   }
   .title-block {
     display: block;
-  }
-  .title-blocks-enter .title-block {
-    transform: translateY(150%);
-  }
-
-  .title-blocks-enter.title-blocks-enter-active .title-block {
-    transform: translateY(0);
-    transition: transform 500ms ease-out;
-  }
-
-  .title-blocks-leave .title-block {
-    transform: translateY(0);
-  }
-
-  .title-blocks-leave.title-blocks-leave-active .title-block {
-    transform: translateY(150%);
-    transition: transform 300ms ease-out;
+    transform: translate3d(0, 150%, 0);
   }

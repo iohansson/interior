@@ -23,6 +23,10 @@ const common = {
     path: PATHS.build,
     filename: 'bundle.js'
   },
+  externals: {
+    'TweenLite': 'TweenLite',
+    'TweenMax': 'TweenMax'
+  },
   module: {
     loaders: [
       {
