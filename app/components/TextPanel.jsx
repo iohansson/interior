@@ -15,6 +15,7 @@ export default class TextPanel extends React.Component {
           ref="paragraph"
           text={this.props.text}
           className={this.props.className + '-paragraph'}
+          id={this.props.id+'paragraph'}
         />
       </Panel>
     );

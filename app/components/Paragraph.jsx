@@ -9,6 +9,7 @@ export default class Paragraph extends React.Component {
       <p
         className={this.props.className}
         style={this.props.style}
+        id={this.props.id}
       >
         {this.props.text}
       </p>

@@ -15,13 +15,13 @@ export default class Cover extends React.Component {
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         style={this.props.style}
-        id="cover"
+        id={this.props.id}
       >
         <Image
           ref="imageContainer"
           imageUrl={this.props.imageUrl}
           className={this.props.className}
-          id="projectCoverImage"
+          id={this.props.id+'image'}
         />
         {controls}
       </div>

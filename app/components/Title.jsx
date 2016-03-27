@@ -18,17 +18,20 @@ export default class Title extends React.Component {
     const size = style.getPropertyValue('font-size');
     const width = parseInt(style.getPropertyValue('width'), 10);
     const textWidth = parseInt(this.getWidthOfText(this.props.title, family, size), 10);
-    const nblocks = Math.ceil(textWidth / width) + 1;
-
+    const nblocks = Math.ceil(textWidth / width);
     const words = this.props.title.split(' ');
     const len = this.props.title.length;
     const symsInBlock = Math.floor(len / nblocks);
     let blocks = [];
-    while (blocks.length < nblocks) {
+    while (words.length) {
       let syms = 0;
       let block = [];
-      while (syms < symsInBlock && words.length > 0) {
+      while (syms < symsInBlock && words.length) {
         let word = words.shift();
+        if (syms + word.length > symsInBlock) {
+          words.unshift(word);
+          break;
+        }
         block.push(word);
         syms += word.length + 1;
       }
@@ -40,7 +43,7 @@ export default class Title extends React.Component {
     });
   }
   componentDidUpdate() {
-    TweenMax.to('.title-block', 0.7, { y: '0%', delay: 0.5 });
+    TweenMax.to('.title-block', 0.7, { y: '0%', delay: 1 });
   }
   getWidthOfText(txt, fontname, fontsize) {
     let c = document.createElement('canvas');
