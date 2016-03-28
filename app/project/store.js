@@ -18,6 +18,13 @@ const projects = [
     image: require('../images/interior2.jpg'),
     id: '2',
     order: 2
+  },
+  {
+    title: 'Lego creations re-imagine',
+    description: 'Bringing a mixed-use project into this financial district will not only enliven the area during daytime, but it will also introduce evening programs and create an essential form of social sustainability to this part of the city.',
+    image: require('../images/interior3.jpg'),
+    id: '3',
+    order: 3
   }
 ];
 
