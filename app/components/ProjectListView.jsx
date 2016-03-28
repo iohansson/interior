@@ -13,6 +13,22 @@ export default class ProjectListContainer extends React.Component {
   constructor(props) {
     super(props);
   }
+  setHoverTimeline() {
+    const { id, order } = this.props.project;
+    const even = order % 2 === 0;
+    const titleMove = even ? 100 : -100;
+    const tl = new TimelineMax();
+    tl.to('#cover'+id, 0.5, { css: { width: '58.33%' } });
+    tl.to('#title'+id, 0.5, { css: { x: titleMove, color: '#857cc0' } }, 0);
+    tl.to('#panel'+id+'paragraph', 0.5, { css: { x: titleMove / 2 } }, 0);
+    tl.to('#cover'+id+'image', 0.75, { css: { x: -100 } });
+    tl.pause();
+
+    this.timeline = tl;
+  }
+  componentDidMount() {
+    this.setHoverTimeline();
+  }
   enter(callback, delay) {
     const tl = new TimelineMax({onComplete: callback});
     const key = this.props.project.id;
@@ -39,29 +55,10 @@ export default class ProjectListContainer extends React.Component {
     TweenMax.to('.title-block', 0.7, { y: '150%' });
   }
   handleHover(hover, e) {
-    const key = this.props.project.id;
-    if (hover || (!hover && e.relatedTarget.className === 'project-list-description-panel')) {
-      const styles = {
-        title: {
-          x: hover ? (this.props.project.order % 2 === 0 ? 100 : -100) : 0,
-          color: hover ? '#857cc0' : '#cecece'
-        },
-        cover: {
-          width: hover ? '58.33%' : '51.33%'
-        },
-        image: {
-          x: hover ? -100 : 0
-        },
-        paragraph: {
-          x: hover ? (this.props.project.order % 2 === 0 ? 50 : -50) : 0
-        }
-      };
-      const tl = new TimelineMax();
-      tl.to('#cover'+key, 0.5, { width: styles.cover.width });
-      tl.to('#title'+key, 0.5, { x: styles.title.x, color: styles.title.color }, 0);
-      tl.to('#panel'+key+'paragraph', 0.5, { x: styles.paragraph.x }, 0);
-      tl.to('#cover'+key+'image', 0.75, { x: styles.image.x });
-      tl.play();
+    if (hover) {
+      this.timeline.play();
+    } else if (!hover && e.relatedTarget.className === 'project-list-description-panel') {
+      this.timeline.reverse();
     }
   }
   render() {
