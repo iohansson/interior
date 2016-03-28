@@ -7,8 +7,7 @@ export default class Image extends React.Component {
       style: {
         width: 0,
         height: 0,
-        top: 0,
-        left: 0
+        top: 0
       }
     };
   }
@@ -48,13 +47,13 @@ export default class Image extends React.Component {
   }
   cover() {
     const el = this.refs.image;
+    const { stickImageTo } = this.props;
     const { ow, oh, ratio } = this.getNaturalDimensions(el);
     const { pw, ph, pratio} = this.getParentDimensions(el);
-    let width, height, top = 0, left = 0;
+    let width, height, top = 0;
     if (ratio > pratio) {
       height = ph;
       width = height * ratio;
-      left = (pw - width) / 2;
     } else {
       width = pw;
       height = width / ratio;
@@ -64,8 +63,7 @@ export default class Image extends React.Component {
       style: {
         width,
         height,
-        top,
-        left
+        top
       }
     });
   }

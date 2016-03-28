@@ -27,7 +27,12 @@
     width: 100%;
     overflow: hidden;
     height: 100%;
+    position: relative;
   }
+    .project-list-cover-image {
+      position: absolute;
+      right: -100px;
+    }
   .title-block-container {
     display: block;
     overflow: hidden;

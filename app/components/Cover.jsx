@@ -22,6 +22,7 @@ export default class Cover extends React.Component {
           imageUrl={this.props.imageUrl}
           className={this.props.className}
           id={this.props.id+'image'}
+          stickImageTo={this.props.stickImageTo}
         />
         {controls}
       </div>

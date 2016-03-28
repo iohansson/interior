@@ -37,3 +37,8 @@
   right: auto;
   text-align: right;
 }
+
+.project-list-container-even .project-list-cover-image {
+  left: -100px;
+  right: auto;
+}

@@ -21,7 +21,7 @@ export default class ProjectListContainer extends React.Component {
     tl.to('#cover'+id, 0.5, { css: { width: '58.33%' } });
     tl.to('#title'+id, 0.5, { css: { x: titleMove, color: '#857cc0' } }, 0);
     tl.to('#panel'+id+'paragraph', 0.5, { css: { x: titleMove / 2 } }, 0);
-    tl.to('#cover'+id+'image', 0.75, { css: { x: -100 } });
+    tl.to('#cover'+id+'image', 1, { css: { x: even ? 100 : -100 } }, 0);
     tl.pause();
 
     this.timeline = tl;
@@ -83,6 +83,7 @@ export default class ProjectListContainer extends React.Component {
           onMouseEnter={this.handleHover.bind(this, true)}
           onMouseLeave={this.handleHover.bind(this, false)}
           id={'cover'+key}
+          stickImageTo={even ? 'left' : 'right'}
         />
         <Title
           ref="title"
