@@ -14,7 +14,7 @@ export default class MenuGroup extends React.Component {
   onLocationChange(newLocation) {
     const path = newLocation.pathname.toLowerCase();
     const activeItems = this.props.group.children.filter((item) => {
-      return path.indexOf('/'+item.name.toLowerCase()+'/') > -1;
+      return path.indexOf('/'+item.name.toLowerCase()) > -1;
     });
     if (activeItems.length) {
       this.setState({
@@ -27,7 +27,10 @@ export default class MenuGroup extends React.Component {
     }
   }
   componentDidMount() {
-    hashHistory.listen(this.onLocationChange.bind(this));
+    this.historyUnlisten = hashHistory.listen(this.onLocationChange.bind(this));
+  }
+  componentWillUnmount() {
+    this.historyUnlisten();
   }
   render() {
     const { group, active, onClose } = this.props;

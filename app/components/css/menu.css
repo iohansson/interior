@@ -69,3 +69,17 @@
     opacity: 1;
     transition: opacity 0.5s linear;
   }
+
+  .menu-underlay {
+    position: fixed;
+    bottom: 0;
+    height: 100%;
+    width: 5.3125em;
+    background: #818181;
+    opacity: 0;
+    z-index: 900;
+    transition: opacity 0.5s linear;
+  }
+  .project-list-container-even .menu-underlay {
+    opacity: 0.8;
+  }

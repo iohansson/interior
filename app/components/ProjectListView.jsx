@@ -35,6 +35,7 @@ export default class ProjectListContainer extends React.Component {
     tl.fromTo('#container'+key, 0, { css: { opacity: 0} }, { css: { opacity: 1}, delay: delay });
     tl.set('#container'+key, { zIndex: 100 });
     tl.fromTo('#cover'+key, 1, { width: '0%' }, { width: '53.33%', delay: delay });
+    tl.fromTo('#menuUnderlay', 1, { height: '0%' }, { height: '100%', delay: delay}, 1);
     tl.fromTo('#panel'+key, 1, { width: '100%' }, { width: '46.67%', delay: delay }, 0);
     tl.fromTo('#panel'+key+'paragraph', 1, { opacity: 0 }, { opacity: 1, delay: delay }, 1);
     tl.play();
@@ -50,6 +51,7 @@ export default class ProjectListContainer extends React.Component {
     const key = this.props.project.id;
     tl.fromTo('#panel'+key, 1, { css: { width: '46.67%' } }, { css: { width: '100%' } });
     tl.fromTo('#cover'+key, 1, { css: { width: '53.33%' } }, { css: { width: '0%' } }, 0);
+    tl.fromTo('#menuUnderlay', 1, { width: '5.3125em' }, { width: 0 }, 0);
     tl.fromTo('#panel'+key+'paragraph', 1, { opacity: 1 }, { opacity: 0 }, 0);
     tl.play();
     TweenMax.to('.title-block', 0.7, { y: '150%' });
@@ -68,8 +70,10 @@ export default class ProjectListContainer extends React.Component {
       {...this.props}
     />;
     const even = project.order % 2 === 0;
+    const menuUnderlay = <div id="menuUnderlay" className="menu-underlay"></div>;
     return (
       <div id={'container'+key} className={'project-list-container container' + (even ? ' project-list-container-even ' : ' ')}>
+        {menuUnderlay}
         <TextPanel
           ref="textPanel"
           text={project.description}

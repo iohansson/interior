@@ -28,7 +28,10 @@ export default class Menu extends React.Component {
     }
   }
   componentDidMount() {
-    hashHistory.listen(this.onLocationChange.bind(this));
+    this.historyUnlisten = hashHistory.listen(this.onLocationChange.bind(this));
+  }
+  componentWillUnmount() {
+    this.historyUnlisten();
   }
   render() {
     const { activeGroupId } = this.state;
