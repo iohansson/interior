@@ -83,3 +83,14 @@
   .project-list-container-even .menu-underlay {
     opacity: 0.8;
   }
+
+.logo-svg-container {
+  position: absolute;
+  top: 4em;
+  right: 1em;
+  transform-origin: center center;
+  transform: rotate(90deg) translateX(-100%);
+}
+  .logo-svg {
+    fill: #c4bcb4;
+  }
