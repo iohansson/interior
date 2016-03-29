@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectListView from './ProjectListView.jsx';
 import ProjectStore from '../project/store';
 import ReactTransitionGroup from 'react-addons-transition-group';
+import { hashHistory } from 'react-router';
 
 export default class ProjectListContainer extends React.Component {
   constructor(props) {
@@ -16,8 +17,7 @@ export default class ProjectListContainer extends React.Component {
   update(props) {
     const { projectId } = props.params;
     const project = projectId ? ProjectStore.findById(projectId) : ProjectStore.first();
-    const { next, prev } = ProjectStore.findNeighbours(projectId);
-
+    const { next, prev } = ProjectStore.findNeighbours(projectId || project.id);
     this.setState({
       project,
       next,

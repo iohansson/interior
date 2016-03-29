@@ -1,21 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router';
 import MenuItem from './MenuItem.jsx';
+import { hashHistory } from 'react-router';
 
 export default class MenuGroup extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      activeItemId: null
+    };
   }
-  componentWillMount() {
-    console.log(this.props.group.name + ' will mount');
+  onLocationChange(newLocation) {
+    const path = newLocation.pathname.toLowerCase();
+    const activeItems = this.props.group.children.filter((item) => {
+      return path.indexOf('/'+item.name.toLowerCase()+'/') > -1;
+    });
+    if (activeItems.length) {
+      this.setState({
+        activeItemId: activeItems[0].id
+      });
+    } else {
+      this.setState({
+        activeItemId: null
+      });
+    }
   }
-  componentWillUnmount() {
-    console.log(this.props.group.name + ' will unmount');
+  componentDidMount() {
+    hashHistory.listen(this.onLocationChange.bind(this));
   }
   render() {
-    const { group, onClick, active, onClose } = this.props;
+    const { group, active, onClose } = this.props;
+    const { activeItemId } = this.state;
     const { id, name, children } = group;
-    const renderedItems = children.map((item, i) => <MenuItem key={item.id} item={item} />);
+    const renderedItems = children.map((item, i) => <MenuItem key={item.id} item={item} prefix={name+'/'} active={item.id === activeItemId} />);
     const header = active ?
       <div className="menu-group-header-container">
         <button className="menu-group-close" onClick={onClose}>x</button>
@@ -23,7 +41,6 @@ export default class MenuGroup extends React.Component {
       </div> :
       <Link
         className="menu-link menu-group-link"
-        onClick={onClick.bind(null, id)}
         to={name}
         activeClassName="menu-link-active"
       >

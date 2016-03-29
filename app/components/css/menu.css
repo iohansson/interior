@@ -24,6 +24,7 @@
   }
     .menu-group {
       width: 33vh;
+      color: #b0adad;
     }
       .menu-group-header-container {
         display: inline-block;
@@ -36,7 +37,35 @@
     .menu-group-active {
       width: 100vh;
     }
+      .menu-group-active .menu-group-header {
+        font-weight: bold;
+        letter-spacing: 0.5em;
+      }
     .menu-link {
       text-decoration: none;
       color: #b0adad;
     }
+
+    .menu-group-close {
+      border: none;
+      background-color: transparent;
+      font-size: 1.167em;
+      width: 1.167em;
+      margin-right: 2em;
+    }
+  .menu-item:before {
+    content: ' ';
+    width: 2em;
+    height: 2px;
+    background-color: #cecece;
+    position: absolute;
+    top: 1.5em;
+    display: block;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    opacity: 0;
+  }
+  .menu-item-active:before {
+    opacity: 1;
+    transition: opacity 0.5s linear;
+  }
