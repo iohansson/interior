@@ -30,6 +30,8 @@ export default class ProjectListContainer extends React.Component {
     this.setHoverTimeline();
   }
   enter(callback, delay) {
+    this.transitioning = true;
+
     const tl = new TimelineMax({onComplete: callback});
     const key = this.props.project.id;
     tl.fromTo('#container'+key, 0, { css: { opacity: 0} }, { css: { opacity: 1}, delay: delay });
@@ -41,11 +43,20 @@ export default class ProjectListContainer extends React.Component {
     tl.fromTo('#panel'+key+'paragraph', 1, { opacity: 0 }, { opacity: 1, delay: delay }, 1);
     tl.play();
   }
+  entered() {
+    this.transitioning = false;
+  }
   componentWillAppear(callback) {
     this.enter(callback, 0);
   }
   componentWillEnter(callback) {
     this.enter(callback, 1);
+  }
+  componentDidAppear() {
+    this.entered();
+  }
+  componentDidEnter() {
+    this.entered();
   }
   componentWillLeave(callback) {
     const tl = new TimelineMax({onComplete: callback});
@@ -58,10 +69,12 @@ export default class ProjectListContainer extends React.Component {
     TweenMax.to('.title-block', 0.7, { y: '150%' });
   }
   handleHover(hover, e) {
-    if (hover) {
-      this.timeline.play();
-    } else if (!hover && e.relatedTarget.className === 'project-list-description-panel') {
-      this.timeline.reverse();
+    if (!this.transitioning) {
+      if (hover) {
+        this.timeline.play();
+      } else if (!hover && e.relatedTarget.className === 'project-list-description-panel') {
+        this.timeline.reverse();
+      }
     }
   }
   render() {
