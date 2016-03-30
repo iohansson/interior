@@ -86,7 +86,7 @@
 
 .logo-svg-container {
   position: absolute;
-  top: 4em;
+  top: 4.5em;
   right: 1em;
   transform-origin: center center;
   transform: rotate(90deg) translateX(-100%);
