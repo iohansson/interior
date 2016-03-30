@@ -24,56 +24,99 @@ export default class ProjectListContainer extends React.Component {
     tl.to('#cover'+id+'image', 1, { css: { x: even ? 100 : -100 } }, 0);
     tl.pause();
 
-    this.timeline = tl;
+    this.hoverTimeline = tl;
+  }
+  setAppearanceTimeline() {
+    const tl = new TimelineMax();
+    const key = this.props.project.id;
+    const start = 1;
+    const duration = 0.5;
+    // labels
+    tl.addLabel('init', start);
+    tl.addLabel('enter', start + duration);
+    tl.addLabel('enter2', start + duration * 2);
+    tl.addLabel('endEnter', start + duration * 3);
+    tl.addLabel('leave', start + duration * 4);
+    tl.addLabel('endLeave', start + duration * 5);
+    // enter
+    tl.set('#menuUnderlay'+key, { css: { width: '5.3125em' } }, 'init');
+    tl.set('#container'+key, { css: { opacity: 1, zIndex: 100 } }, 'init');
+    tl.set('#cover'+key, { css: { width: '0%' } }, 'init');
+    tl.set('#panel'+key, { css: { width: '100%' } }, 'init');
+    tl.set('#panel'+key+'paragraph', { css: { opacity: 0 } }, 'init');
+    tl.to('#cover'+key, duration, { css: { width: '53.33%' } }, 'enter');
+    tl.to('#panel'+key, duration, { css: { width: '46.67%' } }, 'enter');
+    tl.to('#menuUnderlay'+key, duration, { height: '100%' }, 'enter2');
+    tl.to('#panel'+key+'paragraph', duration, { css: { opacity: 1 } }, 'enter2');
+
+    // leave
+    tl.fromTo('#panel'+key, duration, { css: { width: '46.67%' } }, { css: { width: '100%' } }, 'leave');
+    tl.fromTo('#cover'+key, duration, { css: { width: '53.33%' } }, { css: { width: '0%' } }, 'leave');
+    tl.to('#menuUnderlay'+key, duration, { css: { width: 0 } }, 'leave');
+    tl.fromTo('#panel'+key+'paragraph', duration, { opacity: 1 }, { opacity: 0 }, 'leave');
+
+    tl.pause();
+
+    this.appearanceTimeline = tl;
   }
   componentDidMount() {
     this.setHoverTimeline();
+    this.setAppearanceTimeline();
   }
-  enter(callback, delay) {
+  enter(callback) {
     this.transitioning = true;
-
-    const tl = new TimelineMax({onComplete: callback});
-    const key = this.props.project.id;
-    tl.fromTo('#container'+key, 0, { css: { opacity: 0} }, { css: { opacity: 1}, delay: delay });
-    tl.set('#container'+key, { zIndex: 100 });
-    tl.set('#menuUnderlay'+key, { width: '5.3125em' });
-    tl.fromTo('#cover'+key, 1, { width: '0%' }, { width: '53.33%', delay: delay });
-    tl.fromTo('#menuUnderlay'+key, 1, { height: '0%' }, { height: '100%', delay: delay}, 1);
-    tl.fromTo('#panel'+key, 1, { width: '100%' }, { width: '46.67%', delay: delay }, 0);
-    tl.fromTo('#panel'+key+'paragraph', 1, { opacity: 0 }, { opacity: 1, delay: delay }, 1);
-    tl.play();
+    const tl = this.appearanceTimeline;
+    const titleTween = TweenMax.to(`#title${this.props.project.id} .title-block`, 1, { css: { y: '0%' } });
+    tl.add(titleTween, 'enter');
+    tl.seek('enter');
+    tl.addCallback(callback, 'endEnter');
+    tl.tweenTo('endEnter');
   }
-  entered() {
+  didEnter() {
     this.transitioning = false;
+    this.entered = true;
+  }
+  setupEnter(callback) {
+    const tl = this.appearanceTimeline;
+    tl.seek('init');
+    tl.tweenTo('enter');
+    this.enterCallback = callback;
+    this.entered = false;
   }
   componentWillAppear(callback) {
-    this.enter(callback, 0);
+    this.setupEnter(callback);
   }
   componentWillEnter(callback) {
-    this.enter(callback, 1);
+    this.setupEnter(callback);
   }
   componentDidAppear() {
-    this.entered();
+    this.didEnter();
   }
   componentDidEnter() {
-    this.entered();
+    this.didEnter();
   }
   componentWillLeave(callback) {
-    const tl = new TimelineMax({onComplete: callback});
-    const key = this.props.project.id;
-    tl.fromTo('#panel'+key, 1, { css: { width: '46.67%' } }, { css: { width: '100%' } });
-    tl.fromTo('#cover'+key, 1, { css: { width: '53.33%' } }, { css: { width: '0%' } }, 0);
-    tl.to('#menuUnderlay'+key, 1, { css: { width: 0 } }, 0);
-    tl.fromTo('#panel'+key+'paragraph', 1, { opacity: 1 }, { opacity: 0 }, 0);
-    tl.play();
-    TweenMax.to('.title-block', 0.7, { y: '150%' });
+    const tl = this.appearanceTimeline;
+    const titleTween = TweenMax.to(`#title${this.props.project.id} .title-block`, 1, { css: { y: '150%' } });
+    tl.add(titleTween, 'leave');
+    tl.addCallback(callback, 'endLeave');
+    tl.seek('leave');
+    tl.tweenTo('endLeave');
+  }
+  componentDidLeave() {
+    this.props.onDidLeave();
+  }
+  onTitleBlocksReady() {
+    if (!this.entered && !this.transitioning) {
+      this.enter(this.enterCallback);
+    }
   }
   handleHover(hover, e) {
     if (!this.transitioning) {
       if (hover) {
-        this.timeline.play();
+        this.hoverTimeline.play();
       } else if (!hover && e.relatedTarget.className === 'project-list-description-panel') {
-        this.timeline.reverse();
+        this.hoverTimeline.reverse();
       }
     }
   }
@@ -108,6 +151,7 @@ export default class ProjectListContainer extends React.Component {
           className="project-list-title"
           title={project.title}
           id={'title'+key}
+          onBlocksReady={this.onTitleBlocksReady.bind(this)}
         />
         {controls}
       </div>

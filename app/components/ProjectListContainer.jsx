@@ -14,30 +14,40 @@ export default class ProjectListContainer extends React.Component {
       prev: null
     };
   }
-  update(props) {
+  update(props, wait) {
     const { projectId } = props.params;
     const project = projectId ? ProjectStore.findById(projectId) : ProjectStore.first();
     const { next, prev } = ProjectStore.findNeighbours(projectId || project.id);
-    this.setState({
+    const newState = {
       project,
       next,
       prev
-    });
+    };
+    if (wait) {
+      this.nextState = newState;
+      this.setState({
+        project: null
+      });
+    } else {
+      this.setState(newState);
+    }
   }
   componentDidMount() {
     this.update(this.props);
   }
   componentWillReceiveProps(nextProps) {
-    this.update(nextProps);
+    this.update(nextProps, true);
+  }
+  projectDidLeave() {
+    this.setState(this.nextState);
   }
   render() {
     const { project } = this.state;
+    const projectView = project ? <ProjectListView {...this.state} linkPrefix="/design/projects/list/" key={project.id} onDidLeave={this.projectDidLeave.bind(this)} /> : <div key={'stub'}></div>;
     return (
-      project ?
       <ReactTransitionGroup>
-        <ProjectListView {...this.state} linkPrefix="/design/projects/list/" key={project.id} />
+        { projectView }
       </ReactTransitionGroup>
-      : <div></div>
     );
   }
 }

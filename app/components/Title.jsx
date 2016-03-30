@@ -43,7 +43,7 @@ export default class Title extends React.Component {
     });
   }
   componentDidUpdate() {
-    TweenMax.to('.title-block', 0.7, { y: '0%', delay: 1 });
+    this.props.onBlocksReady();
   }
   getWidthOfText(txt, fontname, fontsize) {
     let c = document.createElement('canvas');
