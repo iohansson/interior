@@ -1,12 +1,12 @@
 .menu {
   width: 100vh;
-  height: 5.3125em;
+  height: 6.143em;
   position: fixed;
   background: transparent;
   transform-origin: left top;
   transform: rotate(-90deg) translateX(-100%);
 
-  font-size: 0.856875em;
+  font-size: 0.875em;
 
   z-index: 999;
 }
@@ -18,7 +18,7 @@
     list-style-type: none;
     display: inline-block;
     height: 100%;
-    line-height: 5.3125em;
+    line-height: 6.143em;
     width: 33vh;
     text-align: center;
   }
@@ -49,9 +49,10 @@
     .menu-group-close {
       border: none;
       background-color: transparent;
-      font-size: 1.167em;
-      width: 1.167em;
+      font-size: 1.143em;
+      width: 1em;
       margin-right: 2em;
+      padding: 0;
     }
   .menu-item:before {
     content: ' ';
@@ -86,10 +87,12 @@
 
 .logo-svg-container {
   position: absolute;
-  top: 4.5em;
-  right: 1em;
-  transform-origin: center center;
+  right: 4.5em;
+  top: 2.3571em;
+  transform-origin: 1.214em 3.0714em;
   transform: rotate(90deg) translateX(-100%);
+  width: 2.42857em;
+  height: 1.42857em;
 }
   .logo-svg {
     fill: #c4bcb4;
