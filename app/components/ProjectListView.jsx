@@ -123,9 +123,7 @@ export default class ProjectListContainer extends React.Component {
   render() {
     const { project, next, prev, linkPrefix } = this.props;
     const key = project.id;
-    const controls = <ListControls
-      {...this.props}
-    />;
+    const controls = <ListControls {...this.props} />;
     const even = project.order % 2 === 0;
     const menuUnderlay = <div id={'menuUnderlay'+key} className="menu-underlay"></div>;
     return (
