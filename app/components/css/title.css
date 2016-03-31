@@ -1,0 +1,54 @@
+/* #pagetitle */
+.page-title {
+  font-size: 5.25em;
+  line-height: 0.7353em;
+  color: #cecece;
+
+  margin: 0;
+  width: 64.286%;
+
+  position: absolute;
+  left: 17.857%;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  z-index: 99;
+}
+  .page-title .title-block {
+    transform: none;
+  }
+/* #projectslist */
+.project-list-title {
+  font-size: 6.375em;
+  line-height: 0.7353em;
+  color: #cecece;
+
+  width: 43.583%;
+  margin: 0;
+
+  position: absolute;
+  top: 50%;
+  right: 14.083%;
+  left: auto;
+  transform: translateY(-50%);
+  z-index: 99;
+  pointer-events: none;
+}
+.project-list-container-even .project-list-title {
+  left: 14.083%;
+  right: auto;
+  text-align: right;
+}
+
+.title-block-container {
+  display: block;
+  overflow: hidden;
+  line-height: 1.1;
+  margin-top: -0.35em;
+}
+.title-block-container:first-child {
+  margin-top: 0;
+}
+.title-block {
+  display: block;
+  transform: translate3d(0, 150%, 0);
+}

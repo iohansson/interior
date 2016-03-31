@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TweenMax from 'gsap/src/minified/TweenMax.min';
+import './css/title.css';
 
 export default class Title extends React.Component {
   constructor(props) {
@@ -43,7 +43,10 @@ export default class Title extends React.Component {
     });
   }
   componentDidUpdate() {
-    this.props.onBlocksReady();
+    const { onBlocksReady } = this.props;
+    if (typeof onBlocksReady === 'function') {
+      this.props.onBlocksReady();
+    }
   }
   getWidthOfText(txt, fontname, fontsize) {
     let c = document.createElement('canvas');

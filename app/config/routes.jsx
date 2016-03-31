@@ -4,6 +4,7 @@ import Index from '../components/Index.jsx';
 import Design from '../components/Design.jsx';
 import Projects from '../components/Projects.jsx';
 import ProjectListContainer from '../components/ProjectListContainer.jsx';
+import About from '../components/About.jsx';
 import { Router, Route, hashHistory, IndexRoute, IndexRedirect } from 'react-router';
 
 const routes = (
@@ -16,6 +17,7 @@ const routes = (
           <Route path="list(/:projectId)" component={ProjectListContainer} />
           <IndexRedirect to="list" />
         </Route>
+        <Route path="about" component={About} />
       </Route>
     </Route>
   </Router>

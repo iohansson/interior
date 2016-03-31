@@ -7,22 +7,6 @@
 
   transform: translate3d(0, 0, 0);
 }
-  .project-list-title {
-    font-size: 6.375em;
-    line-height: 0.7353em;
-    color: #cecece;
-
-    width: 43.583%;
-    margin: 0;
-
-    position: absolute;
-    top: 50%;
-    right: 14.083%;
-    left: auto;
-    transform: translateY(-50%);
-    z-index: 99;
-    pointer-events: none;
-  }
   .project-list-cover-image-container {
     width: 100%;
     overflow: hidden;
@@ -33,16 +17,3 @@
       position: absolute;
       right: -100px;
     }
-  .title-block-container {
-    display: block;
-    overflow: hidden;
-    line-height: 1.1;
-    margin-top: -0.35em;
-  }
-  .title-block-container:first-child {
-    margin-top: 0;
-  }
-  .title-block {
-    display: block;
-    transform: translate3d(0, 150%, 0);
-  }
