@@ -1,6 +1,19 @@
+.widget-fact {
+  white-space: nowrap;
+}
 .widget-fact-right {
   text-align: right;
 }
+  .widget-fact-right .widget-fact-number {
+    transform: translateX(85%);
+  }
+.widget-fact-left {
+  text-align: left;
+}
+  .widget-fact-left .widget-fact-title {
+    transform-origin: left top;
+    transform: rotate(-90deg) translate3d(-2.625em, 0, 0);
+  }
 .widget-fact-number {
   font-size: 10em;
   font-weight: bold;
@@ -15,7 +28,12 @@
   display: inline-block;
   text-align: left;
 
+  white-space: normal;
+
   width: 5em;
   transform-origin: left bottom;
-  transform: rotate(-90deg) translate3d(0.25em, 5em, 0);
+  transform: rotate(-90deg) translate3d(0.25em, 5.25em, 0);
+}
+.widget-fact-description {
+  white-space: normal;
 }
