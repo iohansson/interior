@@ -52,7 +52,7 @@ export default class Arrow extends React.Component {
         onMouseEnter={this.handleHover.bind(this, true)}
         onMouseLeave={this.handleHover.bind(this, false)}
       >
-        <svg width="30px" height="92px" viewBox="0 0 30 92" id={'arrow'+this.props.type}>
+        <svg width="100%" height="100%" viewBox="0 0 30 92" id={'arrow'+this.props.type}>
           <polygon className="svg-arrow" points={points} id={'polygon'+this.props.type} />
           <rect x="12" y={y} className="svg-arrow" width="6" height="70" id={'rect'+this.props.type} />
         </svg>

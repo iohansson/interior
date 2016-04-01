@@ -1,6 +1,6 @@
 /* #pagetitle */
 .page-title {
-  font-size: 5.25em;
+  font-size: 7.25em;
   line-height: 0.7353em;
   color: #cecece;
 
@@ -15,6 +15,12 @@
 }
   .page-title .title-block {
     transform: none;
+  }
+  .page-title .title-block-container {
+    margin-top: -0.25em;
+  }
+  .page-title .title-block-container:first-child {
+    margin-top: 0;
   }
 /* #projectslist */
 .project-list-title {

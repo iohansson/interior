@@ -8,10 +8,12 @@ export default class ListControls extends React.Component {
   }
   render() {
     const { next, prev, linkPrefix } = this.props;
+    const prevLink = prev ? <Arrow className="control-arrow control-arrow-prev" type="up" link={ linkPrefix + prev } /> : '';
+    const nextLink = next ? <Arrow className="control-arrow control-arrow-next" type="down" link={ linkPrefix + next } /> : '';
     return (
       <div className="list-controls-container">
-        <Arrow className="control-arrow control-arrow-next" type="down" link={ linkPrefix + next } />
-        <Arrow className="control-arrow control-arrow-prev" type="up" link={ linkPrefix + prev } />
+        {prevLink}
+        {nextLink}
       </div>
     );
   }

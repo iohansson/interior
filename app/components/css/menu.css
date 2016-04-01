@@ -21,6 +21,7 @@
     line-height: 6.143em;
     width: 33vh;
     text-align: center;
+    position: relative;
   }
     .menu-group {
       width: 33vh;
