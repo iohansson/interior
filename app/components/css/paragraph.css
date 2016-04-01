@@ -1,0 +1,25 @@
+/* #pageparagraph */
+.page-paragraph {
+  font-size: 1.5em;
+  color: #fff;
+  margin: 0;
+  width: 40%;
+  left: 30%;
+  line-height: 1.5em;
+
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+/* #projectlistparagraph */
+.project-list-description-panel-paragraph {
+  width: 54%;
+  margin-left: 25.6%;
+  line-height: 2em;
+  opacity: 0;
+
+  /* center vertically */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,3 +1,4 @@
+import uuid from 'node-uuid';
 const pages = [
   {
     title: 'People ignore design that ignores people',
@@ -5,12 +6,29 @@ const pages = [
     order: 1
   },
   {
-    title: 'English, do you speak it?',
+    paragraph: "It's natural to think that living things must be the handiwork of a designer. But it was also natural to think that the sun went around the earth. Overcoming naive impressions to figure out how things really work is one of humanity's highest callings.",
     id: '2',
     order: 2
   },
   {
-    title: 'Lego creations re-imagine',
+    widgets: [
+      {
+        type: 'fact',
+        number: 9,
+        title: 'years of experience',
+        description: "Design can be art. Design can be aesthetics. Design is so simple, that's why it is so complicated.",
+        align: 'right',
+        id: uuid.v4()
+      },
+      {
+        type: 'fact',
+        number: 23,
+        title: 'successful projects',
+        description: "Design can be art. Design can be aesthetics. Design is so simple, that's why it is so complicated.",
+        align: 'left',
+        id: uuid.v4()
+      }
+    ],
     id: '3',
     order: 3
   }

@@ -1,0 +1,24 @@
+.widgets-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.page-widgets-list {
+  width: 50%;
+  color: #fff;
+  left: 25%;
+
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+.widgets-list-item {
+  width: 42.857%;
+  display: inline-block;
+}
+
+.widgets-list-item:nth-child(odd) {
+  margin-right: 14.285%;
+}

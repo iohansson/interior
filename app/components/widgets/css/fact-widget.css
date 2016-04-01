@@ -1,0 +1,21 @@
+.widget-fact-right {
+  text-align: right;
+}
+.widget-fact-number {
+  font-size: 10em;
+  font-weight: bold;
+  line-height: 1.5;
+  display: inline-block;
+  letter-spacing: 0.1em;
+}
+.widget-fact-title {
+  font-size: 2.125em;
+  font-weight: bold;
+  line-height: 1.5;
+  display: inline-block;
+  text-align: left;
+
+  width: 5em;
+  transform-origin: left bottom;
+  transform: rotate(-90deg) translate3d(0.25em, 5em, 0);
+}

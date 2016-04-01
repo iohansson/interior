@@ -13,14 +13,16 @@ export default class Title extends React.Component {
     };
   }
   componentDidMount() {
+    const { title } = this.props;
     const style = window.getComputedStyle(ReactDOM.findDOMNode(this));
     const family = style.getPropertyValue('font-family');
     const size = style.getPropertyValue('font-size');
+    const weight = style.getPropertyValue('font-weight');
     const width = parseInt(style.getPropertyValue('width'), 10);
-    const textWidth = parseInt(this.getWidthOfText(this.props.title, family, size), 10);
-    const nblocks = Math.ceil(textWidth / width);
-    const words = this.props.title.split(' ');
-    const len = this.props.title.length;
+    const textWidth = parseInt(this.getWidthOfText(title, family, size, weight), 10);
+    const nblocks = textWidth / width;
+    const words = title.split(' ');
+    const len = title.length;
     const symsInBlock = Math.floor(len / nblocks);
     let blocks = [];
     while (words.length) {
@@ -48,10 +50,10 @@ export default class Title extends React.Component {
       this.props.onBlocksReady();
     }
   }
-  getWidthOfText(txt, fontname, fontsize) {
+  getWidthOfText(txt, fontname, fontsize, fontweight = 'normal') {
     let c = document.createElement('canvas');
     let ctx = c.getContext('2d');
-    ctx.font = fontsize + ' ' + fontname;
+    ctx.font = fontweight + ' ' + fontsize + ' ' + fontname;
 
     const length = ctx.measureText(txt).width;
 

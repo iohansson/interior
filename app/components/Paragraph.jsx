@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/paragraph.css';
 
 export default class Paragraph extends React.Component {
   constructor(props) {

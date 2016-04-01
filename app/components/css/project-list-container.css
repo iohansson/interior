@@ -14,17 +14,6 @@
   top: 0;
   left: 0;
 }
-  .project-list-description-panel-paragraph {
-    width: 54%;
-    margin-left: 25.6%;
-    line-height: 2em;
-    opacity: 0;
-
-    /* center vertically */
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 .project-list-container-even .project-list-description-panel {
   right: 0;
   left: auto;
