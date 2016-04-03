@@ -7,13 +7,3 @@
 
   transform: translate3d(0, 0, 0);
 }
-  .project-list-cover-image-container {
-    width: 100%;
-    overflow: hidden;
-    height: 100%;
-    position: relative;
-  }
-    .project-list-cover-image {
-      position: absolute;
-      right: -100px;
-    }

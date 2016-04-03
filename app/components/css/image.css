@@ -1,0 +1,23 @@
+.image-container {
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+  .image {
+    position: absolute;
+  }
+  .image-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+/* #projectlistcover*/
+.project-list-cover-image {
+  right: -100px;
+}
+/* #pageimage */
+.page-image-overlay {
+  background-color: #2f478b;
+  opacity: 0.8;
+}

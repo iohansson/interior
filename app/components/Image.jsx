@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/image.css';
 
 export default class Image extends React.Component {
   constructor(props) {
@@ -15,18 +16,21 @@ export default class Image extends React.Component {
     window.addEventListener('resize', this.handleResize.bind(this));
   }
   render() {
+    const { drawOverlay, className, imageUrl } = this.props;
+    const overlay = drawOverlay ? <div className={'image-overlay' + ' ' + className + '-image-overlay'} /> : '';
     return (
       <div
-        className={this.props.className + '-image-container'}
+        className={'image-container' + ' ' + className + '-image-container'}
       >
         <img
           ref="image"
-          src={this.props.imageUrl}
-          className={this.props.className + '-image'}
+          src={imageUrl}
+          className={'image' + ' ' + className + '-image'}
           onLoad={this.afterLoad.bind(this)}
           style={this.state.style}
           id={this.props.id}
           />
+        {overlay}
       </div>
     );
   }
@@ -47,7 +51,6 @@ export default class Image extends React.Component {
   }
   cover() {
     const el = this.refs.image;
-    const { stickImageTo } = this.props;
     const { ow, oh, ratio } = this.getNaturalDimensions(el);
     const { pw, ph, pratio} = this.getParentDimensions(el);
     let width, height, top = 0;
@@ -57,7 +60,7 @@ export default class Image extends React.Component {
     } else {
       width = pw;
       height = width / ratio;
-      top = (ph - height / 2);
+      top = (ph - height) / 2;
     }
     this.setState({
       style: {

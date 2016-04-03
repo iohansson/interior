@@ -2,11 +2,13 @@ import uuid from 'node-uuid';
 const pages = [
   {
     title: 'People ignore design that ignores people',
+    image: require('../images/info1.jpg'),
     id: '1',
     order: 1
   },
   {
     paragraph: "It's natural to think that living things must be the handiwork of a designer. But it was also natural to think that the sun went around the earth. Overcoming naive impressions to figure out how things really work is one of humanity's highest callings.",
+    image: require('../images/info2.jpg'),
     id: '2',
     order: 2
   },

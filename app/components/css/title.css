@@ -13,9 +13,6 @@
   transform: translate3d(0, -50%, 0);
   z-index: 99;
 }
-  .page-title .title-block {
-    transform: none;
-  }
   .page-title .title-block-container {
     margin-top: -0.25em;
   }
