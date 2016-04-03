@@ -17,7 +17,7 @@
 .widget-fact-number {
   font-size: 10em;
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 1.2;
   display: inline-block;
   letter-spacing: 0.1em;
 }
@@ -36,4 +36,7 @@
 }
 .widget-fact-description {
   white-space: normal;
+  margin: 0;
+  font-size: 1em;
+  line-height: 2;
 }

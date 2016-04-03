@@ -6,6 +6,7 @@ import WidgetsList from './widgets/WidgetsList.jsx';
 import Image from './Image.jsx';
 import TweenMax from 'gsap/src/minified/TweenMax.min';
 import TimelineMax from 'gsap/src/minified/TimelineMax.min';
+import './css/page.css';
 
 export default class Page extends React.Component {
   constructor(props) {
@@ -59,7 +60,7 @@ export default class Page extends React.Component {
     tl.to('#page'+key, duration, { css: { y: '0%' } }, 'enter');
 
     // leave
-    tl.fromTo('#page'+key, duration, { css: { scale: 1, opacity: 1 } }, { css: { scale: 0.8, opacity: 0 } }, 'leave');
+    tl.fromTo('#page'+key, duration, { css: { y: '0%' } }, { css: { y: '100%' } }, 'leave');
 
     tl.pause();
 
