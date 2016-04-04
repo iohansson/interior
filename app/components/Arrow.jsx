@@ -30,6 +30,10 @@ export default class Arrow extends React.Component {
     this.setHoverTimeline();
   }
   navigate() {
+    const { onNavigate } = this.props;
+    if (typeof onNavigate === 'function') {
+      onNavigate(this.props.linkTo);
+    }
     hashHistory.push(this.props.link);
   }
   shouldComponentUpdate() {

@@ -13,6 +13,7 @@
   height: 100%;
   top: 0;
   right: 23.75%;
+  z-index: 1;
 }
 .control-arrow {
   position: absolute;

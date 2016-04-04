@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/image.css';
+import Preloader from './Preloader.jsx';
 
 export default class Image extends React.Component {
   constructor(props) {
@@ -16,20 +17,22 @@ export default class Image extends React.Component {
     window.addEventListener('resize', this.handleResize.bind(this));
   }
   render() {
-    const { drawOverlay, className, imageUrl } = this.props;
+    const { drawOverlay, className, imageUrl, preload, preloader } = this.props;
     const overlay = drawOverlay ? <div className={'image-overlay' + ' ' + className + '-image-overlay'} /> : '';
+    const img = <img
+      ref="image"
+      src={imageUrl}
+      className={'image' + ' ' + className + '-image'}
+      onLoad={this.afterLoad.bind(this)}
+      style={this.state.style}
+      id={this.props.id}
+      />;
+    const imgWithPreloader = (preload && preloader) ? <Preloader loadList={[imageUrl]} preloader={preloader}>{img}</Preloader> : img;
     return (
       <div
         className={'image-container' + ' ' + className + '-image-container'}
       >
-        <img
-          ref="image"
-          src={imageUrl}
-          className={'image' + ' ' + className + '-image'}
-          onLoad={this.afterLoad.bind(this)}
-          style={this.state.style}
-          id={this.props.id}
-          />
+        {imgWithPreloader}
         {overlay}
       </div>
     );

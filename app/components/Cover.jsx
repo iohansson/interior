@@ -5,6 +5,13 @@ import ListControls from './ListControls.jsx';
 export default class Cover extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      progress: 0
+    };
+  }
+  onLoadProgress(progress) {
+    this.setState({progress});
   }
   render() {
     const controls = this.props.showControls ? this.props.controls : '';
