@@ -5,7 +5,6 @@ import './css/project-list-container.css';
 import Cover from './Cover.jsx';
 import TextPanel from './TextPanel.jsx';
 import Title from './Title.jsx';
-import ListControls from './ListControls.jsx';
 import TweenMax from 'gsap/src/minified/TweenMax.min';
 import TimelineMax from 'gsap/src/minified/TimelineMax.min';
 
@@ -123,7 +122,7 @@ export default class ProjectListContainer extends React.Component {
   render() {
     const { project, next, prev, linkPrefix } = this.props;
     const key = project.id;
-    const controls = <ListControls {...this.props} />;
+
     const even = project.order % 2 === 0;
     const menuUnderlay = <div id={'menuUnderlay'+key} className="menu-underlay"></div>;
     return (
@@ -151,7 +150,6 @@ export default class ProjectListContainer extends React.Component {
           id={'title'+key}
           onBlocksReady={this.onTitleBlocksReady.bind(this)}
         />
-        {controls}
       </div>
     );
   }

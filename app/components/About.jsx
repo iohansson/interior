@@ -1,53 +1,62 @@
 import React from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
 import Page from './Page.jsx';
+import ListControls from './ListControls.jsx';
 import PageStore from '../page/store';
 import './css/about.css';
+import TweenMax from 'gsap/src/minified/TweenMax.min';
 
 export default class About extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      page: null,
-      next: null,
-      prev: null
+      pages: null,
+      current: null
     };
   }
-  update(props, wait) {
-    const { pageId } = props.params;
-    const page = pageId ? PageStore.findById(pageId) : PageStore.first();
-    const { next, prev } = PageStore.findNeighbours(pageId || page.id);
-    const newState = {
-      page,
-      next: PageStore.isLast(pageId || page.id) ? null : next,
-      prev: PageStore.isFirst(pageId || page.id) ? null : prev
-    };
-    this._prevState = this.state;
-    if (wait) {
-      this._nextState = newState;
-      this.setState({
-        page: null
-      });
-    } else {
-      this.setState(newState);
-    }
+  resolve(nextState, replace, callback) {
+    callback();
   }
   componentDidMount() {
-    this.update(this.props);
+    const pages = PageStore.findAll();
+    this.setState({
+      pages,
+      current: (pages.length > 0 ? 0 : null)
+    });
+    this.updateWindowHeight();
+    this._windowResize = window.addEventListener('resize', this.updateWindowHeight.bind(this));
   }
-  componentWillReceiveProps(nextProps) {
-    this.update(nextProps, false);
+  componentDidUpdate() {
+    TweenMax.to('#pagelist', 1, { css: { y: -this._windowHeight * this.state.current }, onComplete: this.onPageReady.bind(this) });
   }
-  pageDidLeave() {
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._windowResize);
+  }
+  navigate(n) {
+    this.setState({ current: n });
+  }
+  updateWindowHeight() {
+    this._windowHeight = window.innerHeight;
+  }
+  onPageReady() {
+    const { pages, current } = this.state;
+    this.refs['page'+pages[current].id].show();
   }
   render() {
-    const { page } = this.state;
-    const pageView = page ? <Page className="page-about" {...this.state} from={this._prevState.page} linkPrefix="/design/about/" key={page.id} onDidLeave={this.pageDidLeave.bind(this)} /> : <div key={'stub'}></div>;
+    const { current, pages } = this.state;
+    const { next, prev } = {
+      next: (pages && (current < (pages.length - 1))) ? current + 1 : null,
+      prev: (pages && (current > 0)) ? current - 1 : null
+    };
+    const pagesView = pages ? pages.map((page) => <li id={'page'+page.id} className="page-item" key={page.id}><Page ref={'page'+page.id} page={page} /></li>) : null;
+    const controls = <ListControls prev={prev} next={next} linkPrefix="/design/about/" onNavigate={this.navigate.bind(this)} />;
     return (
-      <ReactTransitionGroup>
-        { pageView }
-      </ReactTransitionGroup>
+      <div className="page-controller page-about">
+        { controls }
+        <ul className="page-list" id="pagelist">
+          { pagesView }
+        </ul>
+      </div>
     );
   }
 }

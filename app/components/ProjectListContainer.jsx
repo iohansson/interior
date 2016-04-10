@@ -1,5 +1,6 @@
 import React from 'react';
 import ProjectListView from './ProjectListView.jsx';
+import ListControls from './ListControls.jsx';
 import ProjectStore from '../project/store';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import { hashHistory } from 'react-router';
@@ -43,11 +44,15 @@ export default class ProjectListContainer extends React.Component {
   }
   render() {
     const { project } = this.state;
-    const projectView = project ? <ProjectListView {...this.state} linkPrefix="/design/projects/list/" key={project.id} onDidLeave={this.projectDidLeave.bind(this)} /> : <div key={'stub'}></div>;
+    const projectView = project ? <ProjectListView {...this.state} key={project.id} onDidLeave={this.projectDidLeave.bind(this)} /> : null;
+    const controls = <ListControls {...this.state} linkPrefix="/design/projects/list/" />;
     return (
-      <ReactTransitionGroup>
-        { projectView }
-      </ReactTransitionGroup>
+      <div className="container">
+        {controls}
+        <ReactTransitionGroup>
+          { projectView }
+        </ReactTransitionGroup>
+      </div>
     );
   }
 }

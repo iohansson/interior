@@ -3,5 +3,9 @@ body,
 .container {
   height: 100%;
   position: relative;
+}
+
+body,
+.container {
   overflow: hidden;
 }
