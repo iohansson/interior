@@ -45,6 +45,8 @@
     .menu-link {
       text-decoration: none;
       color: #b0adad;
+      vertical-align: middle;
+      position: relative;
     }
 
     .menu-group-close {
@@ -55,19 +57,19 @@
       margin-right: 2em;
       padding: 0;
     }
-  .menu-item:before {
+  .menu-item-link:before {
     content: ' ';
     width: 2em;
     height: 2px;
     background-color: #cecece;
     position: absolute;
-    top: 1.5em;
+    top: -1em;
     display: block;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
     opacity: 0;
   }
-  .menu-item-active:before {
+  .menu-item-active .menu-item-link:before {
     opacity: 1;
     transition: opacity 0.5s linear;
   }
@@ -97,4 +99,23 @@
 }
   .logo-svg {
     fill: #c4bcb4;
+  }
+.grid-icon-svg-container {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 1.5em;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+}
+  .grid-icon-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #cecece;
+    transition: fill 0.3s linear;
+  }
+  .grid-icon-svg:hover {
+    fill: #aeaeae;
   }
