@@ -48,36 +48,27 @@
       vertical-align: middle;
       position: relative;
     }
-
-    .menu-group-close {
-      border: none;
-      background-color: transparent;
-      font-size: 1.143em;
-      width: 1em;
-      margin-right: 2em;
-      padding: 0;
-    }
-  .menu-item-link:before {
-    content: ' ';
+  .menu-item {
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in;
+  }
+  .menu-item:hover {
+    opacity: 1;
+  }
+  .menu-item-active {
+    opacity: 1;
+  }
+  .menu-highlighter {
     width: 2em;
     height: 2px;
-    background-color: #cecece;
+    background-color: #b0adad;
     position: absolute;
-    top: -1em;
-    display: block;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
-    opacity: 0;
+    top: 1.45em;
   }
-  .menu-item-active .menu-item-link:before {
-    opacity: 1;
-    transition: opacity 0.5s linear;
-  }
-
   .menu-underlay {
     position: fixed;
     bottom: 0;
-    height: 0%;
+    height: 0;
     width: 5.3125em;
     background: #818181;
     opacity: 0;
