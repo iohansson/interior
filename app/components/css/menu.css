@@ -119,3 +119,75 @@
   .grid-icon-svg:hover {
     fill: #aeaeae;
   }
+.close-button-svg-container {
+  display: inline-block;
+  width: 1.75em;
+  height: 1.75em;
+  vertical-align: middle;
+  position: relative;
+  margin-right: 1em;
+}
+  .close-button-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #b0adad;
+  }
+
+.close-container {
+  cursor: pointer;
+}
+/* close button animation */
+#bugLeftBottom {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s ease-in 0s;
+}
+.close-container:hover #bugLeftBottom {
+  transform: translate3d(-3px, -3px, 0);
+}
+#bugLeftTop {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s ease-in 0.1s;
+}
+.close-container:hover #bugLeftTop {
+  transform: translate3d(3px, -3px, 0);
+}
+#bugRightTop {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s ease-in 0.2s;
+}
+.close-container:hover #bugRightTop {
+  transform: translate3d(3px, 3px, 0);
+}
+#bugRightBottom {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s ease-in 0.3s;
+}
+.close-container:hover #bugRightBottom {
+  transform: translate3d(-3px, 3px, 0);
+}
+/* appearance: ReactCSSTransition */
+.bugs-appear #bugLeftBottom {
+  transform: translate3d(-3px, -3px, 0);
+}
+.bugs-appear.bugs-appear-active #bugLeftBottom {
+  transform: translate3d(0, 0, 0);
+}
+.bugs-appear #bugLeftTop {
+  transform: translate3d(3px, -3px, 0);
+}
+.bugs-appear.bugs-appear-active #bugLeftTop {
+  transform: translate3d(0, 0, 0);
+}
+.bugs-appear #bugRightTop {
+  transform: translate3d(3px, 3px, 0);
+}
+.bugs-appear.bugs-appear-active #bugRightTop {
+  transform: translate3d(0, 0, 0);
+}
+.bugs-appear #bugRightBottom {
+  transform: translate3d(-3px, 3px, 0);
+}
+.bugs-appear.bugs-appear-active #bugRightBottom {
+  transform: translate3d(0, 0, 0);
+}

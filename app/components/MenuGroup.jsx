@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import MenuItem from './MenuItem.jsx';
+import CloseButton from './CloseButton.jsx';
 import { hashHistory } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class MenuGroup extends React.Component {
   constructor() {
@@ -38,8 +40,10 @@ export default class MenuGroup extends React.Component {
     const { id, name, children } = group;
     const renderedItems = children.map((item, i) => <MenuItem key={item.id} item={item} prefix={name+'/'} active={item.id === activeItemId} />);
     const header = active ?
-      <div className="menu-group-header-container">
-        <button className="menu-group-close" onClick={onClose}>x</button>
+      <div className="menu-group-header-container close-container" onClick={onClose}>
+        <ReactCSSTransitionGroup transitionName="bugs" transitionAppear={true} transitionAppearTimeout={600}>
+          <CloseButton key="close" />
+        </ReactCSSTransitionGroup>
         <span className="menu-group-header">{name}</span>
       </div> :
       <Link
