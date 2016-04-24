@@ -44,7 +44,6 @@ export default class About extends React.Component {
   }
   render() {
     const { page } = this.state;
-    console.dir(page);
     const pageView = page ? <Page {...this.state} key={page.id} onDidLeave={this.pageDidLeave.bind(this)} /> : null;
     const controls = <ListControls {...this.state} linkPrefix="/design/about/" />;
     return (
