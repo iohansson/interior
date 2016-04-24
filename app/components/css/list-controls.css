@@ -20,6 +20,10 @@
   width: 1.875em;
   cursor: pointer;
 }
+.control-arrow-inactive {
+  cursor: default;
+  opacity: 0.5;
+}
 .control-arrow-next {
   bottom: 5.625em;
 }

@@ -3,60 +3,65 @@ import Page from './Page.jsx';
 import ListControls from './ListControls.jsx';
 import PageStore from '../page/store';
 import './css/about.css';
-import TweenMax from 'gsap/src/minified/TweenMax.min';
+import ReactTransitionGroup from 'react-addons-transition-group';
 
 export default class About extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pages: null,
-      current: null
+      page: null,
+      next: null,
+      prev: null
     };
   }
-  resolve(nextState, replace, callback) {
-    callback();
+  update(props, wait) {
+    const { pageId } = props.params;
+    const page = pageId ? PageStore.findById(pageId) : PageStore.first();
+    const { next, prev } = PageStore.findNeighbours(pageId || page.id);
+    const newState = {
+      page,
+      next,
+      prev
+    };
+    if (wait) {
+      this._nextState = newState;
+      this.setState({
+        page: null
+      });
+    } else {
+      this.setState(newState);
+    }
   }
   componentDidMount() {
-    const pages = PageStore.findAll();
-    this.setState({
-      pages,
-      current: (pages.length > 0 ? 0 : null)
-    });
-    this.updateWindowHeight();
-    this._windowResize = window.addEventListener('resize', this.updateWindowHeight.bind(this));
+    this.update(this.props);
   }
-  componentDidUpdate() {
-    TweenMax.to('#pagelist', 1, { css: { y: -this._windowHeight * this.state.current }, onComplete: this.onPageReady.bind(this) });
+  componentWillReceiveProps(nextProps) {
+    this.update(nextProps, true);
   }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._windowResize);
-  }
-  navigate(n) {
-    this.setState({ current: n });
-  }
-  updateWindowHeight() {
-    this._windowHeight = window.innerHeight;
-  }
-  onPageReady() {
-    const { pages, current } = this.state;
-    this.refs['page'+pages[current].id].show();
+  pageDidLeave() {
+    this.setState(this._nextState);
   }
   render() {
-    const { current, pages } = this.state;
-    const { next, prev } = {
-      next: (pages && (current < (pages.length - 1))) ? current + 1 : null,
-      prev: (pages && (current > 0)) ? current - 1 : null
-    };
-    const pagesView = pages ? pages.map((page) => <li id={'page'+page.id} className="page-item" key={page.id}><Page ref={'page'+page.id} page={page} /></li>) : null;
-    const controls = <ListControls prev={prev} next={next} linkPrefix="/design/about/" onNavigate={this.navigate.bind(this)} />;
+    const { page } = this.state;
+    console.dir(page);
+    const pageView = page ? <Page {...this.state} key={page.id} onDidLeave={this.pageDidLeave.bind(this)} /> : null;
+    const controls = <ListControls {...this.state} linkPrefix="/design/about/" />;
     return (
-      <div className="page-controller page-about">
+      <div className="page-controller page-about container">
         { controls }
-        <ul className="page-list" id="pagelist">
-          { pagesView }
-        </ul>
+        <ReactTransitionGroup>
+          { pageView }
+        </ReactTransitionGroup>
       </div>
     );
+  }
+  static resolve(nextState, replace, callback) {
+    const { pageId } = nextState.params;
+    if (!pageId) {
+      replace('/design/about/' + PageStore.first().id);
+    }
+    const page = PageStore.findById(pageId);
+    callback();
   }
 }

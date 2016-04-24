@@ -15,7 +15,7 @@ const routes = (
       <Route path="design" component={Design}>
         <IndexRedirect to="projects" />
         <Route path="projects" component={Projects}>
-          <Route path="list(/:projectId)" component={ProjectListContainer} />
+          <Route path="list(/:projectId)" component={ProjectListContainer} onEnter={ProjectListContainer.resolve} />
           <IndexRedirect to="list" />
           <Route path="gallery" component={ProjectGalleryContainer} />
         </Route>

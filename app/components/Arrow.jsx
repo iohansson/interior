@@ -5,7 +5,29 @@ export default class Arrow extends React.Component {
   constructor(props) {
     super(props);
   }
-  setHoverTimeline() {
+  componentDidMount() {
+    this._setHoverTimeline();
+    this._show();
+  }
+  render() {
+    const points = this.props.type === 'down' ? '1,62.7 15,76.7 29,62.7 25.2,58.9 15,69.1 4.8,58.9' : '29,29 15,15 1,29 4.8,32.8 15,22.6 25.2,32.8';
+    const y = this.props.type === 'down' ? 0 : 20.7;
+    const { active } = this.props;
+    return (
+      <div
+        {...this.props}
+        onClick={active ? this.navigate.bind(this) : null}
+        onMouseEnter={active ? this.handleHover.bind(this, true) : null}
+        onMouseLeave={active ? this.handleHover.bind(this, false) : null}
+      >
+        <svg width="100%" height="100%" viewBox="0 0 30 92" id={'arrow'+this.props.type}>
+          <polygon className="svg-arrow" points={points} id={'polygon'+this.props.type} />
+          <rect x="12" y={y} className="svg-arrow" width="6" height="70" id={'rect'+this.props.type} />
+        </svg>
+      </div>
+    );
+  }
+  _setHoverTimeline() {
     const {type} = this.props;
     const down = type === 'down';
     const movepx = down ? 16 : -16;
@@ -23,11 +45,10 @@ export default class Arrow extends React.Component {
       y: yi + movepx
     } });
     tl.pause();
-
-    this.timeline = tl;
+    this._timeline = tl;
   }
-  componentDidMount() {
-    this.setHoverTimeline();
+  _show() {
+    this._timeline.reverse(0);
   }
   navigate() {
     const { onNavigate } = this.props;
@@ -36,31 +57,11 @@ export default class Arrow extends React.Component {
     }
     hashHistory.push(this.props.link);
   }
-  shouldComponentUpdate() {
-    return false;
-  }
   handleHover(hover) {
     if (hover) {
-      this.timeline.play();
+      this._timeline.play();
     } else {
-      this.timeline.reverse();
+      this._timeline.reverse();
     }
-  }
-  render() {
-    const points = this.props.type === 'down' ? '1,62.7 15,76.7 29,62.7 25.2,58.9 15,69.1 4.8,58.9' : '29,29 15,15 1,29 4.8,32.8 15,22.6 25.2,32.8';
-    const y = this.props.type === 'down' ? 0 : 20.7;
-    return (
-      <div
-        {...this.props}
-        onClick={this.navigate.bind(this)}
-        onMouseEnter={this.handleHover.bind(this, true)}
-        onMouseLeave={this.handleHover.bind(this, false)}
-      >
-        <svg width="100%" height="100%" viewBox="0 0 30 92" id={'arrow'+this.props.type}>
-          <polygon className="svg-arrow" points={points} id={'polygon'+this.props.type} />
-          <rect x="12" y={y} className="svg-arrow" width="6" height="70" id={'rect'+this.props.type} />
-        </svg>
-      </div>
-    );
   }
 }

@@ -55,4 +55,12 @@ export default class ProjectListContainer extends React.Component {
       </div>
     );
   }
+  static resolve(nextState, replace, callback) {
+    const { projectId } = nextState.params;
+    if (!projectId) {
+      replace('/design/projects/list/' + ProjectStore.first().id);
+    }
+    const project = ProjectStore.findById(projectId);
+    callback();
+  }
 }

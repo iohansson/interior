@@ -60,12 +60,12 @@ class PageStore {
   static findNeighbours(id) {
     const i = pages.findIndex((page) => page.id === id);
     const { nextIndex, prevIndex } = {
-      nextIndex: (((i + 1) < pages.length) ? i + 1 : 0),
-      prevIndex: (((i - 1) >= 0) ? i - 1 : pages.length - 1)
+      nextIndex: (((i + 1) < pages.length) ? i + 1 : null),
+      prevIndex: (((i - 1) >= 0) ? i - 1 : null)
     };
     return {
-      next: pages[nextIndex].id,
-      prev: pages[prevIndex].id
+      next: nextIndex !== null ? pages[nextIndex].id : null,
+      prev: prevIndex !== null ? pages[prevIndex].id : null
     };
   }
 }
