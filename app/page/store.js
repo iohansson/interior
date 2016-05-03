@@ -1,7 +1,7 @@
 import uuid from 'node-uuid';
 const pages = [
   {
-    title: 'People ignore design that ignores people',
+    title: '<span class="em">People</span> ignore design that ignores <span class="em">people</span>',
     image: require('../images/info1.jpg'),
     id: '1',
     order: 1
